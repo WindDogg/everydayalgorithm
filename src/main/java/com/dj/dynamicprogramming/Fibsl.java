@@ -1,6 +1,4 @@
-package com.dj.day01;
-
-import java.util.Vector;
+package com.dj.dynamicprogramming;
 
 public class Fibsl {
     public int fib(int n){
