@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 
 /**
  * 重新练习算法的第一天
+ * 关于单链表的问题
  * @author xhj
  * @version JVM
  * @Date 2022/1/17 10:07
@@ -131,6 +132,96 @@ public class DayOne {
         return dummy.next;
 
     }
+
+
+    /**
+     * 单链表的中点
+     * @param head
+     * @return
+     */
+    public ListNode middleNode(ListNode head){
+        //快慢指针初始化指向head
+        ListNode slow = head,fast = head;
+        //快指针走到末尾时停止
+        while(fast !=null && fast.next !=null){
+            //慢指针走一步，快指针走两步
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //慢指针指向中点
+        return slow;
+    }
+
+    /**
+     *判断链表中是否包含环
+     * @param head
+     * @return
+     */
+    public boolean hasCycle(ListNode head){
+        ListNode slow = head,fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * 链表中有环，计算环的起点
+     * @param head
+     * @return
+     */
+    ListNode detectCycle(ListNode head){
+        ListNode slow = head,fast = head;
+        while(fast!= null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast){
+                break;
+            }
+        }
+        if (fast==null || fast.next == null){
+            return null;
+        }
+        slow = head;
+        while(slow!=fast){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+
+    }
+
+    /**
+     * 两个链表是否相交
+     * @param headA
+     * @param headB
+     * @return
+     */
+
+    ListNode getIntersectionNode(ListNode headA,ListNode headB){
+        ListNode p1 = headA ,p2 = headB;
+        while(p1!=p2){
+            if (p1==null){
+                p1 = headB;
+            }else{
+                p1 = p1.next;
+            }
+            if (p2 == null){
+                p2 = headA;
+            }else{
+                p2 = p2.next;
+            }
+        }
+        return p1;
+    }
+
+
 
     public static void main(String[] args) {
         ListNode ln1 = new ListNode(1);
