@@ -51,7 +51,9 @@ public class DayTwo {
 
 
     public ListNode reverseN(ListNode head,int n){
+        ListNode last = null;
         if (n==1){
+
             return head;
         }
         ListNode res = reverseN(head,n-1);
@@ -59,6 +61,9 @@ public class DayTwo {
         head.next = null;
         return res;
     }
+
+
+
 
 
 
