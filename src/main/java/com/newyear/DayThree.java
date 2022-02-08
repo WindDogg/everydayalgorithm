@@ -11,6 +11,7 @@ import com.offer.utils.TreeNode;
  */
 public class DayThree {
 
+    //遍历链表 输出倒序
     public void traverse(ListNode head){
 
         if (head == null){
@@ -22,6 +23,7 @@ public class DayThree {
 
     }
 
+    //遍历二叉树 前中后序
     public void traverseTree(TreeNode root){
 
         if (root == null){
@@ -35,8 +37,33 @@ public class DayThree {
 
 //        System.out.println(root.val);
 
-
     }
+
+    int res = 0;//记录最大深度
+    int depth = 0; //记录遍历到的节点的深度
+
+    public void traverse(TreeNode root){
+        if (root == null){
+            //到达叶子节点，更新最大深度
+            res = Math.max(res,depth);
+            return;
+        }
+
+        //前序位置
+        depth++;
+        traverse(root.left);
+        traverse(root.right);
+        //后序位置
+        depth--;
+    }
+
+
+
+
+
+
+
+
 
 
     public static void main(String[] args) {
